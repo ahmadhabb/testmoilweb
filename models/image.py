@@ -28,5 +28,10 @@ def process_image(file=None):
     return image_data, rotation_value
 
 def delete_image():
-    session.pop('image_path', None)
+    if 'image_path' in session:
+        try:
+            os.remove(session['image_path'])
+        except FileNotFoundError:
+            pass
+        session.pop('image_path', None)
     session.pop('rotation', None)

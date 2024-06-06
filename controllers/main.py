@@ -18,11 +18,11 @@ def index():
                 session['error'] = 'gambar belum di upload'
                 return redirect(url_for('main.index'))
 
-            if 'rotate-left' in request.form:
+            if 'rotate-right' in request.form:
                 session['rotation'] = (session['rotation'] - 5) % 360
                 return redirect(url_for('main.index'))
 
-            if 'rotate-right' in request.form:
+            if 'rotate-left' in request.form:
                 session['rotation'] = (session['rotation'] + 5) % 360
                 return redirect(url_for('main.index'))
 

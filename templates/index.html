@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Image Rotation App</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -18,43 +18,87 @@
       rel="stylesheet"
       href="https://cdn-uicons.flaticon.com/2.4.0/uicons-regular-straight/css/uicons-regular-straight.css"
     />
-    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static',filename='styles/style.css') }}"
+    />
     <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body style="font-family: 'Poppins', sans-serif" class="p-4">
+  </head>
+  <body style="font-family: 'Poppins', sans-serif" class="p-4">
     <div>
-        <h1 class="font-bold text-5xl">MoilApp</h1>
+      <h1 class="font-bold text-5xl">MoilApp</h1>
     </div>
     <div class="p-4 m-4">
-        <div class="flex flex-col p-4">
-            <div class="flex mt-4 justify-center">
-                <form method="POST" enctype="multipart/form-data">
-                    <label for="file" class="mx-4 bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded inline-flex items-center">
-                        <i class="fi fi-rs-upload mr-2"></i>Choose Image
-                        <input type="file" name="file" id="file" accept="image/*" class="hidden" onchange="this.form.submit()">
-                    </label>
-                </form>
-                    <form method="POST">
-                        <div class="flex flex-row">
-                        <button type="submit" name="rotate-left" class="bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-4 mr-2 rounded">
-                            <i class="fi fi-rs-rotate-left mr-2"></i>Rotate Kiri
-                        </button>
-                        <input type="text" value="{{ rotation_value }}" class="bg-white border border-gray-300 rounded-md py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mr-2" readonly>
-                        <button type="submit" name="rotate-right" class="flex items-center bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded">
-                            <i class="fi fi-rs-rotate-right mr-2"></i>Rotate Kanan
-                        </button>
-                        <button type="submit" name="delete-image" class="flex items-center mx-4 bg-red-500 hover:bg-red-700 text-white font-medium py-2 px-4 mr-2 rounded">
-                            <i class="fi fi-rs-trash mr-2"></i>Delete Image
-                        </button>
-                    </div>
-                    </form>
+      <div class="flex flex-col p-4">
+        <div class="flex mt-4 justify-center">
+          <form method="POST" enctype="multipart/form-data">
+            <label
+              for="file"
+              class="mx-4 bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded inline-flex items-center"
+            >
+              <i class="fi fi-rs-upload mr-2"></i>Choose Image
+              <input
+                type="file"
+                name="file"
+                id="file"
+                accept="image/*"
+                class="hidden"
+                onchange="this.form.submit()"
+              />
+            </label>
+          </form>
+          <form method="POST">
+            <div class="flex flex-row">
+              <button
+                type="submit"
+                name="rotate-left"
+                class="bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-4 mr-2 rounded"
+              >
+                <i class="fi fi-rs-rotate-left mr-2"></i>Rotate Kiri
+              </button>
+              <input
+                type="number"
+                value="{{ rotation_value }}"
+                class="w-20 bg-white border border-gray-300 rounded-md py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mr-2"
+              />
+              <button
+                type="submit"
+                name="rotate-right"
+                class="flex items-center bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded"
+              >
+                <i class="fi fi-rs-rotate-right mr-2"></i>Rotate Kanan
+              </button>
+              <button
+                type="submit"
+                name="reset"
+                class="flex items-center bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-4 mx-4 rounded"
+              >
+                <i class="fi fi-rs-refresh mr-2"></i>Reset
+              </button>
+              <button
+                type="submit"
+                name="delete-image"
+                class="flex items-center mx-4 bg-red-500 hover:bg-red-700 text-white font-medium py-2 px-4 mr-2 rounded"
+              >
+                <i class="fi fi-rs-trash mr-2"></i>Delete Image
+              </button>
             </div>
-            <div class="p-10 m-4 flex justify-center items-center h-screen bg-slate-200 rounded overflow-hidden" id="image-container">
-                {% if image_data %}
-                    <img src="data:image/png;base64,{{ image_data }}" class="max-h-full max-w-full" alt="Uploaded Image">
-                {% endif %}
-            </div>
+          </form>
         </div>
+        <div
+          class="p-10 m-4 flex justify-center items-center h-screen bg-slate-200 rounded overflow-hidden"
+          id="image-container"
+        >
+          {% if image_data %}
+          <img
+            src="data:image/png;base64,{{ image_data }}"
+            class="max-h-full max-w-full"
+            alt="Uploaded Image"
+          />
+          {% endif %}
+        </div>
+      </div>
     </div>
-</body>
+  </body>
 </html>
